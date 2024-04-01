@@ -1,0 +1,13 @@
+@page
+@model WebApp.Pages.Students.EditGradeModel
+
+<h2>Edit Grade</h2>
+
+<form method="post">
+    <input type="hidden" asp-for="Grade.Id" />
+    <div>
+        <label asp-for="Grade.Value">Grade</label>
+        <input asp-for="Grade.Value" />
+    </div>
+    <button type="submit">Save</button>
+</form>

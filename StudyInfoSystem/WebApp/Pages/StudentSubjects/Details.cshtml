@@ -1,0 +1,49 @@
+@page
+@model WebApp.Pages.StudentSubjects.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>StudentSubject</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.StudentSubject.Student)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.StudentSubject.Student.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.StudentSubject.Subject)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.StudentSubject.Subject.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.StudentSubject.Semester)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.StudentSubject.Semester.Id)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.StudentSubject.AverageGrade)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.StudentSubject.AverageGrade)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.StudentSubject.EFinalGrade)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.StudentSubject.EFinalGrade)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.StudentSubject?.Id">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

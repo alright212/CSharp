@@ -1,0 +1,36 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to Study Information System Menu</h1>
+    <p>Built by Glen Kink</p>
+    <p>Currently there are  @Model.StudentCount students and @Model.TeacherCount teachers using this Study Information System and there are  @Model.SubjectCount subjects.</p>
+</div>
+
+<div class="text-right"> 
+    <p>Do you want to perform a search?</p>
+    <a class="btn btn-primary" href="/Search">Search</a>
+    
+</div> 
+<div class="text-right">
+    <p>Do you want to see statistics?</p>
+    <a class="btn btn-primary" href="/Statistics">See Statistics</a>
+</div>
+
+<style>
+    body {
+        font-family: Courier New, monospace; /* Change this to your desired font */
+    }
+
+    h1 {
+        color: #5a6268;
+    }
+
+    p {
+        font-size: 1.2em;
+        color: #6c757d;
+    }
+</style>

@@ -1,0 +1,10 @@
+@page
+@model WebApp.Pages.Game.WinPageModel
+
+<h1>Congratulations!</h1>
+
+<p>@Model.Winner, you have won the game!</p>
+
+<form method="get" action="/">
+    <input type="submit" value="Go back to home" />
+</form>

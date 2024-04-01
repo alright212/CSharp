@@ -1,0 +1,31 @@
+@page
+@model WebApp.Pages.Game.SettingsModel
+
+@{
+    ViewData["Title"] = "Settings";
+}
+
+<h1 class="center-text">Settings</h1>
+
+@foreach (var game in Model.Games)
+{
+    <h2>Game ID: @game.Id</h2>
+
+    <h3>Players:</h3>
+    <ul>
+        @if (game.Players != null)
+        {
+            foreach (var player in game.Players)
+            {
+                <li>@player.Nickname</li>
+            }
+        }
+    </ul>
+
+<a asp-page="/Game/ChangeNicknamesInSettings" asp-route-GameId="@game.Id" class="btn btn-primary">Change Nicknames</a>    
+    
+}
+
+<div>
+    <a asp-page="/Index" class="btn btn-danger">Back to Menu</a>
+</div>

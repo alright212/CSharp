@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Practice", "Practice", "{68D4158F-ABF9-46C5-BFBD-F3B1D33FB0F7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalculatorBrain", "Practice\CalculatorBrain\CalculatorBrain.csproj", "{83290598-7FB0-48F0-8726-1A6E028784DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "Practice\ConsoleApp1\ConsoleApp1.csproj", "{F0BCC058-C363-420A-AE35-809C8D514335}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RockPaperScissors1", "Practice\RockPaperScissors1\RockPaperScissors1.csproj", "{A09C076B-A867-4F22-BAF2-30D71BE52DB0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{83290598-7FB0-48F0-8726-1A6E028784DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83290598-7FB0-48F0-8726-1A6E028784DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83290598-7FB0-48F0-8726-1A6E028784DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83290598-7FB0-48F0-8726-1A6E028784DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F0BCC058-C363-420A-AE35-809C8D514335}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F0BCC058-C363-420A-AE35-809C8D514335}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F0BCC058-C363-420A-AE35-809C8D514335}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F0BCC058-C363-420A-AE35-809C8D514335}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A09C076B-A867-4F22-BAF2-30D71BE52DB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A09C076B-A867-4F22-BAF2-30D71BE52DB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A09C076B-A867-4F22-BAF2-30D71BE52DB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A09C076B-A867-4F22-BAF2-30D71BE52DB0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{83290598-7FB0-48F0-8726-1A6E028784DD} = {68D4158F-ABF9-46C5-BFBD-F3B1D33FB0F7}
+		{F0BCC058-C363-420A-AE35-809C8D514335} = {68D4158F-ABF9-46C5-BFBD-F3B1D33FB0F7}
+		{A09C076B-A867-4F22-BAF2-30D71BE52DB0} = {68D4158F-ABF9-46C5-BFBD-F3B1D33FB0F7}
+	EndGlobalSection
+EndGlobal

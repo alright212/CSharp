@@ -1,0 +1,51 @@
+@page
+@using Domain
+@model WebApp.Pages.Game.LoadGameModel
+
+@{
+    ViewData["Title"] = "Load Game";
+}
+
+<h1 class="center-text">Load Game</h1>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DbGame[0].CreatedAt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DbGame[0].UpdatedAt)
+        </th>
+        <th>
+            Continue as...
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.DbGame)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedAt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdatedAt)
+            </td>
+            <td>
+              @foreach (var player in item.Players!)
+              {
+                  if (player.PlayerType == EPlayerType.Human)
+                  {
+                      var playerLabel = player.Nickname;
+                      <a asp-page="/Game/GamePlay" asp-route-GameId="@item.Id" asp-route-PlayerId="@player.Id">@playerLabel</a>
+                  }
+              }
+            </td>
+            <td>
+            <button class="btn btn-danger" onclick="location.href='@Url.Page("/Games/Delete", new { id = item.Id })'">Delete</button>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

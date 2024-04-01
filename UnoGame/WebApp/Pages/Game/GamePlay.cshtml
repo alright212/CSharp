@@ -1,0 +1,180 @@
+@page
+@using Domain
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model GamePlay
+
+<h1>Play</h1>
+
+<h5>Page reload in: <span id="reload-label">-</span></h5>
+
+<h4 class="center-text">You are player: @Model.Engine.GameState.Players.First(p => p.Id == Model.PlayerId).Nickname</h4>
+<h4 class="center-text">Whose turn is it: @Model.Engine.GetActivePlayer().Nickname</h4>
+
+
+<audio id="backgroundMusic" src="~/audio/UnoThemeSong.mp3" loop>
+    Your browser does not support the audio element.
+</audio>
+<button onclick="toggleMusic()">Play/Pause Music</button>
+
+<div class="card-display">
+    <span class="top-card-label">Top card:</span>
+    <div class="top-card" style="background-color: @Model.Engine.GameState.PlayingDeck.Last().Color.ToString().ToLower();">
+        @Model.Engine.GameState.PlayingDeck.Last()
+    </div>
+</div>
+
+
+@if (Model.AskForColor)
+{
+    <table>
+        <tr>
+            @foreach (var color in Enum.GetValues<EUnoCard.UnoCardsColors>())
+                {
+                    <td style="margin: 15px">
+                        <div>
+                            <form method="post">
+                                <div class="form-group">
+                                    @{
+                                        var c = (int)color - 6;
+                                    }
+                                    <input type="hidden" class="form-control" name="card" value="@c"/>
+                                    <input type="submit" value="@color" class="btn btn-primary">
+                                </div>
+                            </form>
+                        </div>
+                    </td>
+                }
+        </tr>
+    </table>
+}
+else
+{
+    <h4>Cards</h4>
+    <table>
+        <tr>
+            @{
+                var player = Model.Engine.GameState.Players.First(p => p.Id == Model.PlayerId);
+            }
+            
+           @foreach (var card in player.CardsHand)
+           {
+               <td style="margin: 15px">
+                   <div style="box-shadow: 2px 2px 8px rgba(0,0,0,0.1);">
+                       <form method="post">
+                           <div class="form-group">
+                               <button type="submit" name="card" value="@player.CardsHand.IndexOf(card)" 
+                                       class="btn uno-card-button" 
+                                       style="background-color: @card.Color.ToString().ToLower(); 
+                                              color: @(card.Color.ToString().ToLower() == "yellow" ? "black" : "white");">
+                                   @card
+                               </button>
+                           </div>
+                       </form>
+                   </div>
+               </td>
+           }
+        </tr>
+    </table>
+}
+
+@if (Model.Engine.GetActivePlayer().Id == Model.PlayerId && Model.Engine.GetActivePlayer().Drew)
+{
+    <h5>You drew a card</h5>
+    <form method="post">
+        <div class="form-group">
+            <input type="hidden" class="form-control" name="card" value="-1"/>
+            <input type="submit" value="Skip turn" class="btn btn-primary">
+        </div>
+    </form>
+}
+
+
+
+@section Scripts
+{
+    <script>
+        var audio = document.getElementById('backgroundMusic');
+
+        // Function to toggle music play/pause
+        function toggleMusic() {
+            if (audio.paused) {
+                audio.play();
+                localStorage.setItem("isMusicPlaying", "true");
+            } else {
+                audio.pause();
+                localStorage.setItem("isMusicPlaying", "false");
+            }
+        }
+
+        // Save the current playback time before the page unloads
+        window.onbeforeunload = function() {
+            localStorage.setItem("playbackTime", audio.currentTime);
+        };
+
+        // When the page loads, retrieve the playback time and set it
+        window.onload = function() {
+            if (localStorage.getItem("playbackTime")) {
+                audio.currentTime = parseFloat(localStorage.getItem("playbackTime"));
+            }
+            // Automatically play music if it was playing before
+            if (localStorage.getItem("isMusicPlaying") === "true") {
+                audio.play();
+            }
+        };
+    </script>
+
+    @if (Model.Engine.GetActivePlayer().Id != Model.PlayerId && !Model.AskForColor)
+    {
+        <script>
+            let timerLabel = document.querySelector("#reload-label");
+            let timerValue = 3;
+            timerLabel.innerHTML = timerValue.toString();
+
+            setInterval(() => {
+                timerValue--;
+                timerLabel.innerHTML = timerValue.toString();
+                if (timerValue <= 0) {
+                    window.location.reload();
+                }
+            }, 1000);
+        </script>
+    }
+}
+<style>
+    .top-card {
+        width: 120px; 
+        height: 180px;
+        border-radius: 10px;
+        font-size: 24px; 
+        color: black;
+        line-height: 180px;
+        text-align: center; 
+        display: block;
+        margin: 20px auto;
+        border: none; 
+    
+    }.top-card-label {
+             font-size: 24px;
+             font-weight: bold; 
+             margin-right: 10px;
+         }
+         
+    
+    .uno-card-button {
+                                            width: 100px; /* Adjust the width as needed */
+                                            height: 150px; /* Adjust the height as needed */
+                                            border-radius: 10px; /* Rounded corners */
+                                            font-size: 16px; /* Adjusted font size */
+                                            text-align: center;
+                                            padding: 10px; /* Added padding */
+                                            word-wrap: break-word; /* This ensures text wraps */
+                                            overflow: hidden; /* Prevents text from overflowing */
+                                            white-space: normal; /* Allows text to wrap */
+                                            display: flex;
+                                            align-items: center;
+                                            justify-content: center;
+                                            border: none;
+                                             margin: 20px;
+                       
+                                        }
+</style>

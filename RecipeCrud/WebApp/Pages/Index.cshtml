@@ -1,0 +1,33 @@
+﻿@page
+@model WebApp.Pages.IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Recipes</h1>
+    <p></p>
+
+    <!-- Search Form -->
+    <form method="get">
+        <input type="text" name="searchQuery" class="form-control" placeholder="Search for recipes..." />
+        <button type="submit" class="btn btn-primary mt-2">Search</button>
+    </form>
+
+    <!-- Recipes Cards -->
+    <div class="row mt-4">
+        @foreach (var recipe in Model.Recipes)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">@recipe.Name</h5>
+                        <p class="card-text">@recipe.Description</p>
+                        <p class="card-text"><small class="text-muted">Servings: @recipe.Servings</small></p>
+                        <!-- You can add more elements here like an image, link, etc. -->
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

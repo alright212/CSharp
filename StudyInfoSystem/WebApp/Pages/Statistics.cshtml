@@ -1,0 +1,51 @@
+@page
+@model WebApp.Pages.StatisticsModel
+
+@{
+    ViewData["Title"] = "Statistics";
+}
+
+<h2>Subject Statistics</h2>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Subject</th>
+        <th>Student Count</th>
+        <th>Total ECTS</th>
+        <th>Average Grade</th> <!-- New column -->
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var stats in Model.SubjectStatistics)
+    {
+        <tr>
+            <td>@stats.Subject.Name</td>
+            <td>@stats.StudentCount</td>
+            <td>@stats.TotalECTS</td>
+            <td>@stats.AverageGrade</td> <!-- Display average grade -->
+        </tr>
+    }
+    </tbody>
+</table>
+<h2>Semester Statistics</h2> <!-- New section -->
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Semester</th>
+        <th>Student Count</th>
+        <th>Total ECTS</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var stats in Model.SemesterStatistics)
+    {
+        <tr>
+            <td>@stats.Semester.Name</td>
+            <td>@stats.StudentCount</td>
+            <td>@stats.TotalECTS</td>
+        </tr>
+    }
+    </tbody>
+</table>

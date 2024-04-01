@@ -1,0 +1,36 @@
+@page
+@model WebApp.Pages.CreateModel
+
+@{
+    ViewData["Title"] = "New Game";
+}
+
+<h1>Let's start a new game</h1>
+
+<hr/>
+<form method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    
+    <div class="form-group">
+        <label asp-for="HumanPlayerCount" class="control-label">Number of Human Players:</label>
+        <input type="number" asp-for="HumanPlayerCount" min="0" max="10" class="form-control"/>
+        <span asp-validation-for="HumanPlayerCount" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="AiPlayerCount" class="control-label">Number of AI Players:</label>
+        <input type="number" asp-for="AiPlayerCount" min="0" max="10" class="form-control"/>
+        <span asp-validation-for="AiPlayerCount" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Continue" class="btn btn-primary"/>
+    </div>
+</form>
+<div>
+    <a asp-page="/Index" class="btn btn-danger">Back to Menu</a>
+</div>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

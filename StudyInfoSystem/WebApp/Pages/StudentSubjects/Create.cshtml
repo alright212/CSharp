@@ -1,0 +1,52 @@
+@page
+@using Domain
+@model WebApp.Pages.StudentSubjects.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>StudentSubject</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="StudentSubject.StudentId" class="control-label"></label>
+                <select asp-for="StudentSubject.StudentId" class ="form-control" asp-items="ViewBag.StudentId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="StudentSubject.SubjectId" class="control-label"></label>
+                <select asp-for="StudentSubject.SubjectId" class ="form-control" asp-items="ViewBag.SubjectId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="StudentSubject.SemesterId" class="control-label"></label>
+                <select asp-for="StudentSubject.SemesterId" class ="form-control" asp-items="ViewBag.SemesterId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="StudentSubject.AverageGrade" class="control-label"></label>
+                <input asp-for="StudentSubject.AverageGrade" type="number" class="form-control" />
+                <span asp-validation-for="StudentSubject.AverageGrade" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StudentSubject.EFinalGrade" class="control-label"></label>
+                <select asp-for="StudentSubject.EFinalGrade" asp-items="@Html.GetEnumSelectList<EFinalGrade>()" class="form-control"></select>
+                <span asp-validation-for="StudentSubject.EFinalGrade" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

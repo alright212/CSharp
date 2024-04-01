@@ -1,0 +1,24 @@
+@page
+@model WebApp.Pages.Game.ChangeNicknamesInSettingsModel
+
+<h2 class="center-text">Change nicknames for players</h2>
+
+<form method="post">
+    <input type="hidden" asp-for="GameId"/>
+    @for (int i = 0; i < Model.Players.Count; i++)
+    {
+        <div class="form-group">
+            <label asp-for="@Model.Players[i].Nickname" class="control-label"></label>
+            <input asp-for="@Model.Players[i].Nickname" class="form-control"/>
+            <span asp-validation-for="@Model.Players[i].Nickname" class="text-danger"></span>
+        </div>
+    }
+    <div class="form-group">
+        <input type="submit" value="Save" class="btn btn-primary"/>
+    </div>
+</form>
+
+
+<div>
+    <a asp-page="/Game/Settings" class="btn btn-danger">Back to Settings</a>
+</div>

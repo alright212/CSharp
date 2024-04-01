@@ -1,0 +1,111 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+<form  method="get">
+    <div class="form-group">
+        <label asp-for="Search">Search:</label>
+        <input asp-for="Search" class="form-control"/>
+    </div>
+    <div class="form-check">
+        <input asp-for="InAuthor" class="form-check-input"/>
+        <label asp-for="InAuthor" class="form-check-label"></label>
+    </div>
+    <div class="form-check">
+        <input asp-for="InTitle" class="form-check-input"/>
+        <label asp-for="InTitle" class="form-check-label"></label>
+    </div>
+    <div class="form-check">
+        <input asp-for="InPublisher" class="form-check-input"/>
+        <label asp-for="InPublisher" class="form-check-label"></label>
+    </div>
+    <div class="form-check">
+        <input asp-for="InSummary" class="form-check-input"/>
+        <label asp-for="InSummary" class="form-check-label"></label>
+    </div>
+    <div class="form-check">
+        <input asp-for="InComment" class="form-check-input"/>
+        <label asp-for="InComment" class="form-check-label"></label>
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Books[0].Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Books[0].Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Books[0].Publisher)
+        </th>
+        <th>
+            Author
+        </th>
+        <th>
+            Comments
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.Books)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Publisher!.Name)
+            </td>
+            <td>
+                @if (item.Authors != null)
+                {
+                    foreach (var author in item.Authors)
+                    {
+                        @Html.DisplayFor(modelItem => author.Author!.FirstName)
+                        @Html.DisplayFor(modelItem => author.Author!.LastName)
+                        <br/>
+                    }
+                }
+            </td>
+            <td>
+                @if (item.Comments != null)
+                {
+                    foreach (var comment in item.Comments)
+                    {
+                        @Html.DisplayFor(modelItem => comment.CommentText)
+                        <br/>
+                    }
+                }
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+<!-- Statistics -->
+<div class="row">
+    <div class="col-md-4">
+        <h2>Total Books</h2>
+        <p>@Model.TotalBooks</p>
+    </div>
+    <div class="col-md-4">
+        <h2>Total Authors</h2>
+        <p>@Model.TotalAuthors</p>
+    </div>
+    <div class="col-md-4">
+        <h2>Total Publishers</h2>
+        <p>@Model.TotalPublishers</p>
+    </div>
+</div>

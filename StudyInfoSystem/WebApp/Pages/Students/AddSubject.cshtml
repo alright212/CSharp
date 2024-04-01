@@ -1,0 +1,13 @@
+@page
+@model WebApp.Pages.Students.AddSubjectModel
+
+<h2>Add Subject</h2>
+
+<form method="post">
+    <input type="hidden" asp-for="StudentId" />
+    <div>
+        <label asp-for="SelectedSubjectId">Subject</label>
+        <select asp-for="SelectedSubjectId" asp-items="Model.SubjectSelectList"></select>
+    </div>
+    <button type="submit">Add</button>
+</form>
