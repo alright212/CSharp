@@ -2,7 +2,8 @@ Glen Kink
 glkink
 222901IADB
 
-## UNO CARD GAME(WebApp)
+## UNO CARD GAME(WebApp) 
+You can also play on console.
 
 
 
